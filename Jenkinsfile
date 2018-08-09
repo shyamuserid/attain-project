@@ -16,7 +16,7 @@ node {
 	
 	stage("BUILD") {
 	    sh """
-	    	./gradlew clean build --info
+	    	./gradlew clean build --debug --full-stacktrace
 	    """
 	}
 
