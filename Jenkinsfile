@@ -16,7 +16,7 @@ node {
 	
 	stage("BUILD") {
 	    sh """
-	    	./gradlew clean build
+	    	./gradlew clean build --info
 	    """
 	}
 
