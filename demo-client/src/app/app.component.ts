@@ -13,8 +13,10 @@ export class AppComponent {
       this.app.authenticate(undefined, undefined);
     }
     logout() {
-      this.http.post('logout', {}).subscribe(() => {
+      this.http.get('logout', {responseType: 'text', headers: this.app.globalHeaders}).subscribe(() => {
           this.app.authenticated = false;
+          this.app.globalHeaders = null;
+          console.log(`Status after logout: ${this.app.authenticated}`);
           this.router.navigateByUrl('/login');
       });
     }

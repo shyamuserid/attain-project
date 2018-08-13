@@ -41,11 +41,7 @@ export class XhrInterceptor implements HttpInterceptor {
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
-    FormsModule,
-    CommonModule
-  ],
-  exports: [
-    RouterModule
+    FormsModule
   ],
   providers: [
     AppService,
