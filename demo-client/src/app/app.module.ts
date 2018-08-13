@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpHandler } from '@angular/common/http';
 import { HttpRequest } from '@angular/common/http';
 import { HttpInterceptor } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -40,7 +41,11 @@ export class XhrInterceptor implements HttpInterceptor {
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CommonModule
+  ],
+  exports: [
+    RouterModule
   ],
   providers: [
     AppService,
