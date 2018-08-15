@@ -34,6 +34,8 @@ repositories {
 assemble.dependsOn ':demo-client:buildAngular'
 bootRun.dependsOn ':demo-client:buildAngular'
 
+clean.dependsOn ':demo-client:cleanAngular'
+
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile('org.springframework.boot:spring-boot-starter-web')

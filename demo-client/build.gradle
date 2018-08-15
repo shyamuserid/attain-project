@@ -27,3 +27,7 @@ task buildAngular(type: NpmTask, dependsOn: npmInstall) {
 	description = 'Build Angular app into Spring ../demo-java/src/main/resources/static directory'
 	args = ['run', 'buildToSpring']
 }
+
+task cleanAngular(type: Exec) {
+	commandLine 'rm', '-r', '../demo-java/src/main/resources/static'
+}
