@@ -15,7 +15,6 @@ export class HomeComponent {
   }
 
   authenticated() {
-    console.log(`Authenticated status on HomeComponent load: ${this.app.authenticated}`);
     return this.app.authenticated;
   }
 }

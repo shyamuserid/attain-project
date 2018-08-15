@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private app: AppService, private http: HttpClient, private router: Router) {
-      this.app.authenticate(undefined, undefined);
-    }
+  constructor(public app: AppService, private http: HttpClient, private router: Router) {
+    this.app.authenticate(undefined, undefined);
+  }
     logout() {
-      this.http.get('logout', {responseType: 'text', headers: this.app.globalHeaders}).subscribe(() => {
+      this.http.post('logout', {}, {responseType: 'text'}).subscribe(() => {
           this.app.authenticated = false;
           this.app.globalHeaders = null;
           console.log(`Status after logout: ${this.app.authenticated}`);
