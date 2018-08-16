@@ -1,15 +1,17 @@
 package io.spring.GradleDemo.config;
 
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
-@Order(SecurityProperties.BASIC_AUTH_ORDER)
+@EnableWebSecurity
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
@@ -22,12 +24,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					"/home",
 					"/login").permitAll()
 		.anyRequest().authenticated()
-		.and().logout().permitAll()
 		.and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 	}
 	
 	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/*");
+	public void configure(WebSecurity web) {
+		web.ignoring().antMatchers("/*.js",
+									"/*.js.map",
+									"/*.css",
+									"/index.html",
+									"/favicon.ico");
 	}
+	
 }

@@ -11,7 +11,7 @@ export class HomeComponent {
   greeting;
 
   constructor(private app: AppService, private http: HttpClient) {
-    http.get('users/greeting', {responseType: 'text', headers: app.globalHeaders}).subscribe(data => this.greeting = data);
+    http.get('users/greeting', {responseType: 'text'}).subscribe(data => this.greeting = data);
   }
 
   authenticated() {

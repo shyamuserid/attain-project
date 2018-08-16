@@ -15,8 +15,6 @@ export class AppComponent {
     logout() {
       this.http.post('logout', {}, {responseType: 'text'}).subscribe(() => {
           this.app.authenticated = false;
-          this.app.globalHeaders = null;
-          console.log(`Status after logout: ${this.app.authenticated}`);
           this.router.navigateByUrl('/login');
       });
     }

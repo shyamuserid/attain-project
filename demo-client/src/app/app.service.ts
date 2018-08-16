@@ -7,7 +7,6 @@ import { Observable, of } from 'rxjs';
 export class AppService {
 
     authenticated = false;
-    globalHeaders: HttpHeaders;
 
     constructor(private http: HttpClient) {
     }
@@ -23,13 +22,12 @@ export class AppService {
                 catchError(this.handleError('authenticate', null))
             )
             .subscribe(response => {
-                if (response && response.username) {
+                if (response && response.status === 200) {
                     this.authenticated = true;
-                    this.globalHeaders = headers;
-                    return callback && callback();
                 } else {
-                    console.error('Response did not container the valid username!');
+                    this.authenticated = false;
                 }
+                return callback && callback();
             });
     }
 
@@ -40,6 +38,8 @@ export class AppService {
 
             if (error.status === 400) {
                 console.error('Encountered HTTP 400 trying to authenticate');
+            } else if (error.status === 401) {
+                console.log('Failed to authenticate with HTTP 401');
             } else {
                 console.error(error);
                 alert(`${operation} failed - check the console for more information`);
