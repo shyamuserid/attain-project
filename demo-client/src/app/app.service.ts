@@ -22,7 +22,7 @@ export class AppService {
                 catchError(this.handleError('authenticate', null))
             )
             .subscribe(response => {
-                if (response && response.status === 200) {
+                if (response && response['name']) {
                     this.authenticated = true;
                 } else {
                     this.authenticated = false;
@@ -33,7 +33,6 @@ export class AppService {
 
     private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
-
             this.authenticated = false;
 
             if (error.status === 400) {
