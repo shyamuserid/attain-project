@@ -8,7 +8,7 @@ node {
 		GIT_BRANCH = GIT_BRANCH.replace("origin/", "")
 		git(
             url: "${REPO_URL}",
-            credentialsId: 'd09bb819-ed8e-427e-bb9d-e72b1b7092ac',
+            credentialsId: 'jim-git-credentials',
             branch: "${GIT_BRANCH}"
         )
         currentBuild.setDisplayName("${GIT_BRANCH}-${BUILD_NUMBER}")
@@ -16,7 +16,7 @@ node {
 	
 	stage("BUILD") {
 	    sh """
-	    	./gradlew clean build --debug --full-stacktrace
+	    	./gradlew clean build
 	    """
 	}
 
