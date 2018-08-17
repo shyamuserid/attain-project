@@ -29,5 +29,5 @@ task buildAngular(type: NpmTask, dependsOn: npmInstall) {
 }
 
 task cleanAngular(type: Exec) {
-	commandLine 'rm', '-r', '../demo-java/src/main/resources/static'
+	commandLine 'rm', '-rf', '../demo-java/src/main/resources/static'
 }
