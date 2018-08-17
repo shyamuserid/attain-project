@@ -22,7 +22,7 @@ node {
 
 	stage("PUBLISH JAR") {
 		sh """
-			aws s3 cp demo-java-0.0.1-SNAPSHOT.jar s3://attain-project-repo
+			aws s3 cp demo-java/build/libs/demo-java-0.0.1-SNAPSHOT.jar s3://attain-project-repo
 		"""
 	}
 
