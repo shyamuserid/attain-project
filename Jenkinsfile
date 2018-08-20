@@ -26,4 +26,36 @@ node {
 		"""
 	}
 
+	stage("MERGE") {
+		withCredentials([
+			usernamePassword(credentialsId: "jim-git-credentials",
+							passwordVariable: 'GIT_PASSWORD',
+							usernameVariable: 'GIT_USERNAME')
+		]) {
+			def tag = "attain-project-${GIT_BRANCH}-${BUILD_NUMBER}"
+			def origin = "https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/shyamuserid/attain-project.git"
+			sh """
+				git remote set-url origin https://github.com/shyamuserid/attain-project.git
+				git config user.name "Jenkins"
+				git config user.email "jenkins@blah.blorp"
+				git tag -a ${tag} -m "Tagging ${tag}"
+				git push ${origin} ${tag}
+
+				if [ "${GIT_BRANCH}" =~ ^ci-.*$]; then
+					git checkout -- .
+					git checkout integrate
+					git merge ${GIT_BRANCH}
+					git push ${origin} integrate
+				elif [ "${GIT_BRANCH}" = "integrate" ]; then
+					git checkout -- .
+					git checkout master
+					git merge ${GIT_BRANCH}
+					git push ${origin} master
+				else
+					exit 0
+				fi
+			"""
+		}
+	}
+
 }
