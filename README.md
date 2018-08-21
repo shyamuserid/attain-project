@@ -15,9 +15,9 @@
 
 # To Run
     Either copy the artifact to tomcat and start tomcat:
-      `cp build/libs/gradle-demo-0.0.1-SNAPSHOT.jar $CATALINA_HOME/webapps`
-      `cd $CATALINA_HOME`
-      `./catalina.sh start`
+      cp build/libs/gradle-demo-0.0.1-SNAPSHOT.jar $CATALINA_HOME/webapps
+      cd $CATALINA_HOME
+      ./catalina.sh start
     Or execute with gradle:
-      `cd attain-project/`
-      `./gradlew bootrun`
+      cd attain-project/
+      ./gradlew bootrun
