@@ -31,3 +31,8 @@ task buildAngular(type: NpmTask, dependsOn: npmInstall) {
 task cleanAngular(type: Exec) {
 	commandLine 'rm', '-rf', '../demo-java/src/main/resources/static'
 }
+
+task buildWatch(type: NpmTask, dependsOn: npmInstall) {
+    description = 'Build Angular app and watch for changes'
+    args = ['run', 'buildWatch']
+}

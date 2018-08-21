@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "buildToSpring": "ng build --output-path=../demo-java/src/main/resources/static"
+    "buildToSpring": "ng build --output-path=../demo-java/src/main/resources/static",
+    "buildWatch": "ng build --output-path=../demo-java/src/main/resources/static --watch"
   },
   "private": true,
   "dependencies": {
