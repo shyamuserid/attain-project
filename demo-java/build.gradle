@@ -24,11 +24,16 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.palantir.docker'
 
 group = 'io.spring'
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
 	mavenCentral()
+}
+
+if (project.hasProperty('jarVersion')) {
+	version = jarVersion
+} else {
+	version = '0.0.1-SNAPSHOT'
 }
 
 assemble.dependsOn ':demo-client:buildAngular'

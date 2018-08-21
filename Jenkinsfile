@@ -16,13 +16,13 @@ node {
 	
 	stage("BUILD") {
 	    sh """
-	    	./gradlew clean build
+	    	./gradlew clean build -PjarVersion=0.0.${BUILD_NUMBER}-SNAPSHOT
 	    """
 	}
 
 	stage("PUBLISH JAR") {
 		sh """
-			aws s3 cp demo-java/build/libs/demo-java-0.0.1-SNAPSHOT.jar s3://attain-project-repo
+			aws s3 cp demo-java/build/libs/demo-java-0.0.${BUILD_NUMBER}-SNAPSHOT.jar s3://attain-project-repo
 		"""
 	}
 
