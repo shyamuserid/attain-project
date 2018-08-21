@@ -41,7 +41,7 @@ node {
 				git tag -a ${tag} -m "Tagging ${tag}"
 				git push ${origin} ${tag}
 
-				if [ "${GIT_BRANCH}" =~ ^ci-.*$]; then
+				if [ "${GIT_BRANCH}" =~ ^ci-.*\$]; then
 					git checkout -- .
 					git checkout integrate
 					git merge ${GIT_BRANCH}
