@@ -30,7 +30,7 @@ node {
 		sh """
 			echo "Docker Login"
 			set +x
-			$(aws ecr get-login --no-include-email --region us-east-1)
+			\$(aws ecr get-login --no-include-email --region us-east-1)
 			set -x
 			docker build -t 927342992241.dkr.ecr.us-east-1.amazonaws.com/attain-project:${BUILD_NUMBER} -f demo-java/Dockerfile --build-arg JAR_FILE=build/libs/demo-java-0.0.${BUILD_NUMBER}-SNAPSHOT.jar demo-java/
 			docker push 927342992241.dkr.ecr.us-east-1.amazonaws.com/attain-project:${BUILD_NUMBER}
