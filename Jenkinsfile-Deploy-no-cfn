@@ -1,0 +1,7 @@
+node {
+    deleteDir()
+
+    stage("DEPLOY") {
+        
+    }
+}
